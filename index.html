@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Event snippet for Visualização de página conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17926465259/IoixCIeJvPEbEOvNgORC',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17926465259"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17926465259');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicite Contato - Crédito PJ</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.82)),
+        url('background.png') no-repeat center center;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+
+    .page-overlay {
+      min-height: 100vh;
+      backdrop-filter: blur(1px);
+    }
+
+    .topbar {
+      width: 100%;
+      padding: 20px 24px 0;
+      animation: fadeDown 0.8s ease;
+    }
+
+    .logo-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      width: 180px;
+      max-width: 70vw;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 20px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      min-height: calc(100vh - 90px);
+    }
+
+    .left {
+      flex: 1 1 470px;
+      animation: fadeLeft 1s ease;
+    }
+
+    .left h1 {
+      font-size: 46px;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+
+    .left h1 span {
+      color: #ffd400;
+    }
+
+    .left p {
+      font-size: 18px;
+      color: #e5e5e5;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      max-width: 580px;
+    }
+
+    .benefits {
+      list-style: none;
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .benefits li {
+      font-size: 17px;
+      color: #f7f7f7;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 16px;
+      border-radius: 14px;
+      backdrop-filter: blur(3px);
+    }
+
+    .form-box {
+      flex: 1 1 400px;
+      max-width: 440px;
+      background: rgba(255,255,255,0.96);
+      color: #111;
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      animation: fadeRight 1s ease;
+    }
+
+    .form-box h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .form-box p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d8d8d8;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.25s;
+    }
+
+    .form-group input:focus {
+      border-color: #ffd400;
+      box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      background: #ffd400;
+      color: #111;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 10px 24px rgba(255, 212, 0, 0.22);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      opacity: 0.96;
+    }
+
+    .footer-note {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    #sucesso {
+      display: none;
+      margin-top: 16px;
+      background: #ecfff3;
+      color: #168246;
+      border: 1px solid #bdeccc;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: bold;
+      animation: fadeUp 0.5s ease;
+    }
+
+    @keyframes fadeLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeRight {
+      from {
+        opacity: 0;
+        transform: translateX(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        gap: 26px;
+        padding-top: 10px;
+      }
+
+      .left h1 {
+        font-size: 34px;
+      }
+
+      .left p {
+        font-size: 16px;
+      }
+
+      .form-box {
+        padding: 24px;
+      }
+
+      .logo {
+        width: 150px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        background:
+          linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.86)),
+          url('background.png') no-repeat center top;
+        background-size: cover;
+      }
+
+      .topbar {
+        padding: 18px 16px 0;
+      }
+
+      .container {
+        padding: 20px 16px 30px;
+      }
+
+      .left h1 {
+        font-size: 30px;
+      }
+
+      .benefits li {
+        font-size: 15px;
+        padding: 12px 14px;
+      }
+
+      .form-box h2 {
+        font-size: 26px;
+      }
+
+      .logo {
+        width: 135px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-overlay">
+
+    <div class="topbar">
+      <div class="logo-wrap">
+        <img src="logo.png" alt="Logo PagBank" class="logo">
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="left">
+        <h1>Solicite atendimento para <span>Crédito PJ</span></h1>
+        <p>
+          Preencha o formulário e nossa equipe entrará em contato com você
+          para apresentar as melhores condições para sua empresa.
+        </p>
+
+        <ul class="benefits">
+          <li>✔ Atendimento rápido</li>
+          <li>✔ Processo simples</li>
+          <li>✔ Para MEI, pequenas e médias empresas</li>
+          <li>✔ Sujeito à análise</li>
+        </ul>
+      </div>
+
+      <div class="form-box">
+        <h2>Quero receber contato</h2>
+        <p>Preencha seus dados abaixo:</p>
+
+        <form name="contato" method="POST" data-netlify="true" action="/obrigado.html">
+          <input type="hidden" name="form-name" value="contato">
+
+          <div class="form-group">
+            <label>Nome completo</label>
+            <input type="text" name="nome" required>
+          </div>
+
+          <div class="form-group">
+            <label>Nome da empresa</label>
+            <input type="text" name="empresa" required>
+          </div>
+
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Telefone / WhatsApp</label>
+            <input type="text" name="whatsapp" required>
+          </div>
+
+          <button type="submit" class="btn">SOLICITAR CONTATO</button>
+
+          <div class="footer-note">
+            Ao enviar, você concorda em ser contatado(a) pela equipe responsável.
+          </div>
+
+          <div id="sucesso">
+            ✔ Dados enviados com sucesso! Em breve entraremos em contato.
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function mostrarSucesso() {
+      setTimeout(() => {
+        const sucesso = document.getElementById("sucesso");
+        if (sucesso) {
+          sucesso.style.display = "block";
+        }
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
