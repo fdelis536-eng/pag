@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamento - Grupo Isotech</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .header-top {
+      background: linear-gradient(135deg, #004a8e 0%, #00843d 100%);
+      padding: 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    
+    .logo-text {
+      color: #00ff00;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    
+    .header-info {
+      text-align: right;
+    }
+    
+    .header-info h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .header-info p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin: 3px 0;
+    }
+    
+    .content {
+      padding: 40px;
+    }
+    
+    .form-section {
+      margin-bottom: 35px;
+    }
+    
+    .form-section h3 {
+      color: #004a8e;
+      font-size: 16px;
+      font-weight: 700;
+      border-bottom: 3px solid #00843d;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+    
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Segoe UI', sans-serif;
+      transition: all 0.3s ease;
+      background: #f9f9f9;
+    }
+    
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #004a8e;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(0,74,142,0.1);
+    }
+    
+    .items-section {
+      margin-bottom: 35px;
+    }
+    
+    .items-section h3 {
+      color: #004a8e;
+      font-size: 16px;
+      font-weight: 700;
+      border-bottom: 3px solid #00843d;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background: white;
+    }
+    
+    table thead {
+      background: linear-gradient(135deg, #004a8e 0%, #003a6b 100%);
+      color: white;
+    }
+    
+    table th {
+      padding: 15px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    table td {
+      padding: 14px 15px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+    
+    table tr:hover {
+      background-color: #f9f9f9;
+    }
+    
+    table input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    
+    table input:focus {
+      outline: none;
+      border-color: #004a8e;
+      box-shadow: 0 0 0 2px rgba(0,74,142,0.1);
+    }
+    
+    .btn-remove {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    
+    .btn-remove:hover {
+      background: #c82333;
+    }
+    
+    .btn-add {
+      background: #00843d;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-bottom: 20px;
+    }
+    
+    .btn-add:hover {
+      background: #006b30;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,132,61,0.3);
+    }
+    
+    .total-section {
+      background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf1 100%);
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 4px solid #00843d;
+    }
+    
+    .total-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .total-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .total-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #004a8e;
+      min-width: 200px;
+      text-align: right;
+    }
+    
+    .footer-note {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 6px;
+      border-top: 2px solid #e0e0e0;
+      font-size: 11px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #e0e0e0;
+    }
+    
+    .btn-pdf {
+      background: linear-gradient(135deg, #004a8e 0%, #003a6b 100%);
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0,74,142,0.3);
+    }
+    
+    .btn-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,74,142,0.4);
+    }
+    
+    .btn-pdf:active {
+      transform: translateY(0);
+    }
+    
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .button-group {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-top {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .header-info {
+        text-align: center;
+        margin-top: 20px;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .total-row {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      
+      .content {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="orcamento">
+    <!-- HEADER -->
+    <div class="header-top">
+      <div class="logo-container">
+        <span class="logo-text">ISOTECH</span>
+        <div style="font-size: 12px; opacity: 0.9;">Telhas Termoacústicas</div>
+      </div>
+      <div class="header-info">
+        <h1>ORÇAMENTO</h1>
+        <p id="data-orcamento"></p>
+        <p id="validade-orcamento"></p>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content">
+      <div class="form-section">
+        <h3>DADOS DA EMPRESA</h3>
+        <p><strong>Grupo Isotech</strong></p>
+        <p>CNPJ: 25.246.025/0001-09</p>
+      </div>
+
+      <div class="form-section">
+        <h3>DADOS DO CLIENTE</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome / Razão Social</label>
+            <input type="text" id="cliente-nome" placeholder="Nome do cliente">
+          </div>
+          <div class="form-group">
+            <label>CPF / CNPJ</label>
+            <input type="text" id="cliente-doc" placeholder="000.000.000-00">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>INFORMAÇÕES DO ORÇAMENTO</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Data</label>
+            <input type="date" id="orcamento-data">
+          </div>
+          <div class="form-group">
+            <label>Validade (dias)</label>
+            <input type="number" id="orcamento-validade" value="7" min="1">
+          </div>
+        </div>
+      </div>
+
+      <div class="items-section">
+        <h3>ITENS DO ORÇAMENTO</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 10%;">Qtd</th>
+              <th style="width: 50%;">Descrição</th>
+              <th style="width: 20%;">Valor Unit.</th>
+              <th style="width: 20%;">Total</th>
+            </tr>
+          </thead>
+          <tbody id="itens-tabela">
+            <tr class="item-row">
+              <td><input type="number" class="qtd" value="1" min="1" style="width: 100%;"></td>
+              <td><input type="text" class="descricao" placeholder="Ex: Telha Sanduíche TP40" style="width: 100%;"></td>
+              <td><input type="number" class="valor" value="0" min="0" step="0.01" style="width: 100%;"></td>
+              <td><span class="total-item">R$ 0,00</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn-add" onclick="adicionarItem()">+ Adicionar Item</button>
+      </div>
+
+      <div class="total-section">
+        <div class="total-row">
+          <div class="total-label">VALOR TOTAL DO ORÇAMENTO</div>
+          <div class="total-value">R$ <span id="total-geral">0,00</span></div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        <p>Observações: Este orçamento tem validade de <span id="validade-footer">7</span> dias. Preços sujeitos a alteração após este período. Gerado automaticamente pelo sistema de orçamentos Grupo Isotech.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button class="btn-pdf" onclick="gerarPDF()">📥 Gerar PDF</button>
+  </div>
+</div>
+
+<script>
+// Inicializar data
+document.getElementById('orcamento-data').valueAsDate = new Date();
+
+// Atualizar data e validade no orçamento
+function atualizarDatas() {
+  const data = document.getElementById('orcamento-data').value;
+  const validade = document.getElementById('orcamento-validade').value;
+  
+  if (data) {
+    const dataObj = new Date(data + 'T00:00:00');
+    const dataFormatada = dataObj.toLocaleDateString('pt-BR');
+    document.getElementById('data-orcamento').textContent = 'Data: ' + dataFormatada;
+  }
+  
+  document.getElementById('validade-orcamento').textContent = 'Validade: ' + validade + ' dias';
+  document.getElementById('validade-footer').textContent = validade;
+}
+
+// Calcular totais
+function calcularTotais() {
+  let totalGeral = 0;
+  const linhas = document.querySelectorAll('.item-row');
+  
+  linhas.forEach(linha => {
+    const qtd = parseFloat(linha.querySelector('.qtd').value) || 0;
+    const valor = parseFloat(linha.querySelector('.valor').value) || 0;
+    const total = qtd * valor;
+    
+    linha.querySelector('.total-item').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    totalGeral += total;
+  });
+  
+  document.getElementById('total-geral').textContent = totalGeral.toFixed(2).replace('.', ',');
+}
+
+// Adicionar nova linha
+function adicionarItem() {
+  const tabela = document.getElementById('itens-tabela');
+  const novaLinha = document.createElement('tr');
+  novaLinha.className = 'item-row';
+  novaLinha.innerHTML = `
+    <td><input type="number" class="qtd" value="1" min="1" style="width: 100%; padding: 8px;" onchange="calcularTotais()" oninput="calcularTotais()"></td>
+    <td><input type="text" class="descricao" placeholder="Ex: Telha Sanduíche TP40" style="width: 100%; padding: 8px;"></td>
+    <td><input type="number" class="valor" value="0" min="0" step="0.01" style="width: 100%; padding: 8px;" onchange="calcularTotais()" oninput="calcularTotais()"></td>
+    <td style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="total-item">R$ 0,00</span>
+      <button class="btn-remove" onclick="removerItem(this)">✕</button>
+    </td>
+  `;
+  tabela.appendChild(novaLinha);
+}
+
+// Remover linha
+function removerItem(btn) {
+  btn.closest('tr').remove();
+  calcularTotais();
+}
+
+// Gerar PDF
+function gerarPDF() {
+  const nomeCliente = document.getElementById('cliente-nome').value || 'Cliente';
+  const element = document.getElementById('orcamento');
+  
+  const opt = {
+    margin: 10,
+    filename: 'Orcamento_' + nomeCliente.replace(/\s+/g, '_') + '_' + new Date().toISOString().split('T')[0] + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+  };
+  
+  html2pdf().set(opt).from(element).save();
+}
+
+// Event listeners
+document.getElementById('orcamento-data').addEventListener('change', atualizarDatas);
+document.getElementById('orcamento-validade').addEventListener('change', atualizarDatas);
+document.getElementById('cliente-nome').addEventListener('input', calcularTotais);
+
+// Adicionar listeners aos inputs existentes
+document.querySelectorAll('.qtd, .valor').forEach(input => {
+  input.addEventListener('change', calcularTotais);
+  input.addEventListener('input', calcularTotais);
+});
+
+// Inicializar
+atualizarDatas();
+calcularTotais();
+</script>
+
+</body>
+</html>
